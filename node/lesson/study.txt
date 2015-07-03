@@ -1,0 +1,7 @@
+模块地址：
+1.utility,工具类库
+https://github.com/node-modules/utility
+2.superagent,http方面的库，可以发起get或post请求
+http://visionmedia.github.io/superagent/
+3.cheerio,node.js版的jquery，用来从网页以css selector取数据
+https://github.com/cheeriojs/cheerio

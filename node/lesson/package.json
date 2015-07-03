@@ -4,13 +4,15 @@
   "description": "学习课程",
   "main": "app1.js",
   "dependencies": {
+    "cheerio": "^0.19.0",
     "express": "^4.13.0",
+    "superagent": "^1.2.0",
     "utility": "^1.4.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "carlleton",
   "license": "ISC"
 }
