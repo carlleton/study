@@ -5,3 +5,5 @@ https://github.com/node-modules/utility
 http://visionmedia.github.io/superagent/
 3.cheerio,node.js版的jquery，用来从网页以css selector取数据
 https://github.com/cheeriojs/cheerio
+4.eventproxy,计数器并发
+https://github.com/JacksonTian/eventproxy
