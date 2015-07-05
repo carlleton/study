@@ -7,3 +7,6 @@ http://visionmedia.github.io/superagent/
 https://github.com/cheeriojs/cheerio
 4.eventproxy,计数器并发
 https://github.com/JacksonTian/eventproxy
+5.async,异步流程控制
+https://github.com/caolan/async
+demo:https://github.com/alsotang/async_demo
