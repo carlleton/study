@@ -1,0 +1,16 @@
+{
+  "name": "lesson6",
+  "version": "0.0.1",
+  "description": "lesson 6",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "carlleton",
+  "license": "MIT",
+  "devDependencies": {
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
+  }
+}
