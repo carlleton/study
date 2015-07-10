@@ -1,0 +1,14 @@
+{
+  "name": "lesson7",
+  "version": "0.0.1",
+  "description": "lesson7",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha-phantomjs f2e/index.html"
+  },
+  "author": "carlleton",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha-phantomjs": "^3.5.3"
+  }
+}
