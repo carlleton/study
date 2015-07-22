@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <!-- wrap_content:实际文本宽度
+    	 match_parent:当前控件铺满父容器，2.3api之后增加
+    	 fill_parent:当前控件充满父类容器，2.3api之前
+     -->
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message"
+        android:textColor="#000"
+        android:textSize="28sp" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone" >
+
+        <requestFocus />
+    </EditText>
+
+</LinearLayout>
