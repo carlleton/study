@@ -5,15 +5,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
 import android.graphics.Color;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
 	private Button loginButton;
 	private Button btn2;
+	private ImageButton imgbtn;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,6 +27,7 @@ public class MainActivity extends Activity {
 		 */
 		loginButton= (Button) findViewById(R.id.button1);
 		btn2 = (Button) findViewById(R.id.button2);
+		imgbtn = (ImageButton) findViewById(R.id.imageView1);
 		/*
 		 * 匿名内部类
 		loginButton.setOnClickListener(new OnClickListener() {
@@ -56,7 +59,13 @@ public class MainActivity extends Activity {
 				Toast.makeText(MainActivity.this, "btn2要执行的逻辑", 1).show();
 			}
 		});
-
+		
+		imgbtn.setOnClickListener(this);
+	}
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		Log.i("tag", "接口实现方式");
 	}
 
 }
