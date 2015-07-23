@@ -4,5 +4,6 @@
     <string name="app_name">yan</string>
     <string name="action_settings">Settings</string>
     <string name="message">姓名：</string>
+    <string name="button_denglu">登陆</string>
 
 </resources>
