@@ -2,7 +2,9 @@
  * 读取百度贴吧前多少个帖子，并输出
  */
  
-var express=require('express');
+ var eventproxy=require('eventproxy');
+var http=require('http');
+var url=require('url');
 var Readbook=require('./readbook');
 var readbook=new Readbook();
 
@@ -13,20 +15,25 @@ var books=[
 ];
 
  
-var app=express();
-app.get('/',function(req,res,next){
-	//res.writeHead(200,{'Content-Type':'text/plain'});
-	readbooks(res,next);
-	//res.end('\n');
-});
-app.listen(3000,function(){
-	console.log('app is running at port 3000');
-});
+http.createServer(function(request,res){
+	var pathname=url.parse(request.url).pathname;
+	if(pathname=='/favicon.ico')return;
+	res.writeHead(200,{'Content-Type':'text/html'});
+	res.write("<!doctype html>");
+	res.write('<html><head><meta charset="utf-8" /><title>a</title><body>');
+	readbooks(res);
+	//res.end();
+}).listen(3000);
+console.log('app is running at port 3000');
 
 
-function readbooks(res,next){
-	var n=books.length;
+function readbooks(res){
+	var n=books.length;console.log('n:'+n);
+	var ep=new eventproxy();
+	ep.after("readed",n,function(names){
+		res.end('</body></html>');
+	});
 	for(var i=0;i<n;i++){
-		readbook.read(books[i].url,books[i].top,books[i].bookname,res,next);
+		readbook.read(books[i].url,books[i].top,books[i].bookname,res,ep);
 	}
 }

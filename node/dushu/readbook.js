@@ -3,10 +3,10 @@ var cheerio=require('cheerio');
 
 var Readbook=function(){};
 
-Readbook.prototype.read=function(url,top,bookname,res,next){
+Readbook.prototype.read=function(url,top,bookname,res,ep){
 	var _this=this;
 	superagent.get(url).end(function(err,sres){
-		if(err)return next(err);
+		if(err)return err;
 		//sres.text里面存储着网页的html内容，将它传给cheerio.load之后
 		//就可以得到一个实现了jquery接口的变量，我们习惯将它命名为'$'，
 		//剩下的就用jquery操作了
@@ -16,7 +16,9 @@ Readbook.prototype.read=function(url,top,bookname,res,next){
 		if(url.indexOf("tieba.baidu.com/f/good")>0){
 			str+=_this.check_baidutieba(text,top);
 		}
-		res.send(str);
+		res.write(str);
+		ep.emit('readed',bookname);
+		console.log('readend:'+bookname);
 	});
 };
 Readbook.prototype.check_baidutieba=function(text,top){
