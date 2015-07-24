@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		 */
 		loginButton= (Button) findViewById(R.id.button1);
 		btn2 = (Button) findViewById(R.id.button2);
-		imgbtn = (ImageButton) findViewById(R.id.imageView1);
+		imgbtn = (ImageButton) findViewById(R.id.imageButton1);
 		/*
 		 * 匿名内部类
 		loginButton.setOnClickListener(new OnClickListener() {

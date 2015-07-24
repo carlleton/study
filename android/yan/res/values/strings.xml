@@ -6,5 +6,6 @@
     <string name="message">姓名：</string>
     <string name="button_denglu">登陆</string>
     <string name="button2">按钮2</string>
+    <string name="lengshow">这是一个长得字符串显示，这是一个长得字符串显示2，这是一个长得字符串显示3，这是一个长得字符串显示4，</string>
 
 </resources>
