@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void init(){
-		int shownum=R.string.show_num;
+		int shownum= Integer.parseInt(this.getString(R.string.show_num));
 		LinearLayout ly= (LinearLayout) findViewById(R.id.liner1);
 		
 		
@@ -30,21 +30,17 @@ public class MainActivity extends Activity {
 			basestrs[i]= String.valueOf(basestr_chars[i]);
 		}
 		
-		System.out.println("basen:"+base_n);
-		
-		for(int i=0;i<base_n;i++){
-			System.out.println("basen:+"+basestrs[i]);
-		}
+		System.out.println("shownum:"+shownum);
 		
 		LayoutParams lps=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-		//for(int i=0;i<shownum;i++){
+		for(int i=0;i<shownum;i++){
 			TextView textview1 = new TextView(this);
-			textview1.setText("ÄÏÎÞ°¢ÃÖÍÓ·ð");//basestrs[base_i]
+			textview1.setText(basestrs[base_i]);//
 			
-		//	base_i++;
-		//	if(base_i>=base_n)base_i=0;
+			base_i++;
+			if(base_i>=base_n)base_i=0;
 			ly.addView(textview1,lps);
-		//}
+		}
 		
 	}
 
