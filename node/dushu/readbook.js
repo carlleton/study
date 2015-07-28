@@ -19,6 +19,7 @@ Readbook.prototype.read=function(url,top,bookname,res,ep){
 		if(url.indexOf("tieba.baidu.com/novel/")>0){
 			str+=_this.check_baidutieba_batou(text,top);
 		}
+		
 		res.write(str);
 		ep.emit('readed',bookname);
 		console.log('readend:'+bookname);
