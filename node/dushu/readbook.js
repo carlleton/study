@@ -16,18 +16,37 @@ Readbook.prototype.read=function(url,top,bookname,res,ep){
 		if(url.indexOf("tieba.baidu.com/f/good")>0){
 			str+=_this.check_baidutieba(text,top);
 		}
+		if(url.indexOf("tieba.baidu.com/novel/")>0){
+			str+=_this.check_baidutieba_batou(text,top);
+		}
 		res.write(str);
 		ep.emit('readed',bookname);
 		console.log('readend:'+bookname);
 	});
 };
-Readbook.prototype.check_baidutieba=function(text,top){
+Readbook.prototype.check_baidutieba=function(text,top){//百度贴吧
 	var $=cheerio.load(text);
 	var lis=$('#thread_list >li');
 	
 	var str="";
 	for(var i=0;i<top;i++){
 		var a=$(lis[i]).find(".threadlist_title a")[0];
+		if(!a)continue;
+		var href=$(a).attr("href");
+		if(href.indexOf('/p')==0){
+			href=""+href;
+		}
+		str+='<p><a href="http://tieba.baidu.com'+href+'" target="_blank">'+$(a).text()+'</a></p>';
+	}
+	return str;
+}
+Readbook.prototype.check_baidutieba_batou=function(text,top){//百度贴吧——吧头
+	var $=cheerio.load(text);
+	var lis=$('.novel-list-body >li');
+	
+	var str="";
+	for(var i=0;i<top&&i<lis.length;i++){
+		var a=$(lis[i]).find("a")[0];
 		if(!a)continue;
 		var href=$(a).attr("href");
 		if(href.indexOf('/p')==0){

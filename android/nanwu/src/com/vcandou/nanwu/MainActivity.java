@@ -22,6 +22,9 @@ public class MainActivity extends Activity {
 	private int shownum=0;
 	private int showindex=0;
 	private int base_n=0;
+	private int base_color=android.graphics.Color.argb(100, 0, 0, 0);
+	private int flash_color=android.graphics.Color.argb(255, 255, 0, 0);
+	
 	private void init(){
 		shownum= Integer.parseInt(this.getString(R.string.show_num));
 		String basestr=this.getString(R.string.basestr);
@@ -40,50 +43,41 @@ public class MainActivity extends Activity {
 			for(base_i=0;base_i<base_n;base_i++){
 				TextView textview1 = new TextView(this);
 				textview1.setText(basestrs[base_i]);
-				textview1.setTextSize(12);
+				textview1.setTextSize(20);
+				textview1.setTextColor(base_color);
 				fl.addView(textview1);
 				textviewlist.add(textview1);
 			}
+			TextView blankview1=new TextView(this);
+			blankview1.setText("  ");
+			fl.addView(blankview1);
 		}
-		return;
-		//handler.postDelayed(task2,5000);//延迟调用
+		TextView textview_old=(TextView)textviewlist.get(showindex);
+		textview_old.setTextColor(flash_color);
+		
+		handler.postDelayed(task,5000);//延迟调用
 		//handler.post(task);//马上调用
 	}
 	private Handler handler = new Handler();
-	private Runnable task2 = new Runnable(){
-		public void run(){
-			for(int i=0;i<shownum*base_n;i++){
-				TextView textviewi=(TextView)textviewlist.get(i);
-				textviewi.setVisibility(View.INVISIBLE);
-			}
-			TextView textview_old=(TextView)textviewlist.get(showindex);
-			textview_old.setVisibility(View.VISIBLE);
-			handler.postDelayed(task,100);
-		}
-	};
 	private Runnable task = new Runnable() {
 		public void run() {
-			handler.postDelayed(this, 50);// 设置延迟时间，此处是5秒
+			handler.postDelayed(this, 300);// 设置延迟时间，此处是5秒
 			runflash();
 		}
 	};
 	private void runflash(){
 		TextView textview_old=(TextView)textviewlist.get(showindex);
-		textview_old.setVisibility(View.INVISIBLE);
+		textview_old.setTextColor(base_color);
 		
 		showindex++;
 		if(showindex>=shownum*base_n){
 			showindex=0;
 			handler.removeCallbacks(task);
-			for(int i=0;i<shownum*base_n;i++){
-				TextView textviewi=(TextView)textviewlist.get(i);
-				textviewi.setVisibility(View.VISIBLE);
-			}
 			return;
 		}
 		System.out.println("showindex:"+showindex);
 		TextView textview_new=(TextView)textviewlist.get(showindex);
-		textview_new.setVisibility(View.VISIBLE);
+		textview_new.setTextColor(flash_color);
 		
 	}
 
