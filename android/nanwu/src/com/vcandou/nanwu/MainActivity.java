@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
+import android.util.DisplayMetrics;
+import android.view.Window;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -19,14 +22,28 @@ public class MainActivity extends Activity {
 		init();
 	}
 	private List<TextView> textviewlist=new ArrayList<TextView>();
+	FlowLayout fl;
 	private int shownum=0;
 	private int showindex=0;
 	private int base_n=0;
 	private int base_color=android.graphics.Color.argb(100, 0, 0, 0);
 	private int flash_color=android.graphics.Color.argb(255, 255, 0, 0);
 	private int top_FlowLayout=0;
+	private int screenWidth =0;
+	private int screenHeight=0;
+	private int num_w=0;
+	private int num_h=0;
+	
+	private int measureHeight=0;//Ë¶ÅÂáèÂéªÁöÑÈ´òÂ∫¶
 	
 	private void init(){
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		screenWidth =  dm.widthPixels;
+		screenHeight = dm.heightPixels;
+	    
+	    num_w=screenWidth/30;
+		
 		shownum= Integer.parseInt(this.getString(R.string.show_num));
 		String basestr=this.getString(R.string.basestr);
 		char[] basestr_chars=basestr.toCharArray();
@@ -36,10 +53,10 @@ public class MainActivity extends Activity {
 		for(int i=0;i<base_n;i++){
 			basestrs[i]= String.valueOf(basestr_chars[i]);
 		}
-		System.out.println("shownum:"+shownum);
 		
 		
-		FlowLayout fl=(FlowLayout) findViewById(R.id.flowlayout1);
+		fl=(FlowLayout) findViewById(R.id.flowlayout1);
+		
 		for(int i=0;i<shownum;i++){
 			for(base_i=0;base_i<base_n;base_i++){
 				TextView textview1 = new TextView(this);
@@ -51,18 +68,20 @@ public class MainActivity extends Activity {
 			}
 			TextView blankview1=new TextView(this);
 			blankview1.setText("  ");
+			blankview1.setTextSize(20);
 			fl.addView(blankview1);
+			textviewlist.add(blankview1);
 		}
 		TextView textview_old=(TextView)textviewlist.get(showindex);
 		textview_old.setTextColor(flash_color);
 		
-		handler.postDelayed(task,5000);//—”≥Ÿµ˜”√
-		//handler.post(task);//¬Ì…œµ˜”√
+		handler.postDelayed(task,5000);//Âª∂ËøüË∞ÉÁî®
+		//handler.post(task);//È©¨‰∏äË∞ÉÁî®
 	}
 	private Handler handler = new Handler();
 	private Runnable task = new Runnable() {
 		public void run() {
-			handler.postDelayed(this, 300);// …Ë÷√—”≥Ÿ ±º‰£¨¥À¥¶ «5√Î,300
+			handler.postDelayed(this, 100);// ËÆæÁΩÆÂª∂ËøüÊó∂Èó¥ÔºåÊ≠§Â§ÑÊòØ5Áßí,300
 			runflash();
 		}
 	};
@@ -71,25 +90,27 @@ public class MainActivity extends Activity {
 		textview_old.setTextColor(base_color);
 		
 		showindex++;
-		if(showindex>=shownum*base_n){
+		if(measureHeight==0){
+			measureHeight=fl.getMeasuredHeight();
+			int h=textview_old.getHeight();
+			num_h= (int) Math.ceil((float)measureHeight/(float)h);
+		}
+		if(showindex>=shownum*(base_n+1)){
 			showindex=0;
 			top_FlowLayout=0;
-			FlowLayout fl=(FlowLayout) findViewById(R.id.flowlayout1);
-			fl.layout(0, top_FlowLayout, 480, 724);
+			fl.layout(0, top_FlowLayout, screenWidth, screenHeight);
 			//handler.removeCallbacks(task);
 			//return;
 		}
-		if(showindex!=0 && showindex%(16*15)==0){
-			top_FlowLayout-=42.5*16;
-			System.out.println("toplayout:"+top_FlowLayout);
-			FlowLayout fl=(FlowLayout) findViewById(R.id.flowlayout1);
-			fl.layout(0, top_FlowLayout, 480, 724);
+		
+		if(showindex!=0 && (showindex+1)%((num_h+1)*num_w)==0){
+			top_FlowLayout-= measureHeight;//(num_h-1)*45,(screenHeight-barHeight)
+			fl.layout(0, top_FlowLayout, screenWidth, screenHeight);
 		}
 		
 		//System.out.println("showindex:"+showindex);
 		TextView textview_new=(TextView)textviewlist.get(showindex);
 		textview_new.setTextColor(flash_color);
-		
 	}
 
 }

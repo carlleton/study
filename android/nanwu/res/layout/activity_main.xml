@@ -5,14 +5,12 @@
     android:layout_height="match_parent"
     tools:context="com.vcandou.nanwu.MainActivity"
     tools:ignore="MergeRootFrame" >
+    
 
     <com.vcandou.nanwu.FlowLayout
         android:id="@+id/flowlayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
+        android:layout_height="match_parent" >
     </com.vcandou.nanwu.FlowLayout>
 
 </FrameLayout>
-
