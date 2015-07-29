@@ -1,3 +1,3 @@
 study from:
-* http://www.imooc.com/learn/96（Android攻城师的第一课）[IMOOC]
+* http://www.imooc.com/learn/96锛圓ndroid鏀诲煄甯堢殑绗竴璇撅級[IMOOC]
 
