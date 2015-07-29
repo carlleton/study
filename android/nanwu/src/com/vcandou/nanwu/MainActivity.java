@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 	private int base_n=0;
 	private int base_color=android.graphics.Color.argb(100, 0, 0, 0);
 	private int flash_color=android.graphics.Color.argb(255, 255, 0, 0);
+	private int top_FlowLayout=0;
 	
 	private void init(){
 		shownum= Integer.parseInt(this.getString(R.string.show_num));
@@ -61,7 +62,7 @@ public class MainActivity extends Activity {
 	private Handler handler = new Handler();
 	private Runnable task = new Runnable() {
 		public void run() {
-			handler.postDelayed(this, 300);// 设置延迟时间，此处是5秒
+			handler.postDelayed(this, 300);// 设置延迟时间，此处是5秒,300
 			runflash();
 		}
 	};
@@ -72,10 +73,20 @@ public class MainActivity extends Activity {
 		showindex++;
 		if(showindex>=shownum*base_n){
 			showindex=0;
-			handler.removeCallbacks(task);
-			return;
+			top_FlowLayout=0;
+			FlowLayout fl=(FlowLayout) findViewById(R.id.flowlayout1);
+			fl.layout(0, top_FlowLayout, 480, 724);
+			//handler.removeCallbacks(task);
+			//return;
 		}
-		System.out.println("showindex:"+showindex);
+		if(showindex!=0 && showindex%(16*15)==0){
+			top_FlowLayout-=42.5*16;
+			System.out.println("toplayout:"+top_FlowLayout);
+			FlowLayout fl=(FlowLayout) findViewById(R.id.flowlayout1);
+			fl.layout(0, top_FlowLayout, 480, 724);
+		}
+		
+		//System.out.println("showindex:"+showindex);
 		TextView textview_new=(TextView)textviewlist.get(showindex);
 		textview_new.setTextColor(flash_color);
 		
