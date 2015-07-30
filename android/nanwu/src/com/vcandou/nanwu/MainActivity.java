@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class MainActivity extends Activity {
 	private int num_h=0;
 	
 	private int measureHeight=0;//要减去的高度
+	private int measureWidth=0;
 	
 	private void init(){
 		DisplayMetrics dm = new DisplayMetrics();
@@ -42,7 +44,6 @@ public class MainActivity extends Activity {
 		screenWidth =  dm.widthPixels;
 		screenHeight = dm.heightPixels;
 	    
-	    num_w=screenWidth/30;
 		
 		shownum= Integer.parseInt(this.getString(R.string.show_num));
 		String basestr=this.getString(R.string.basestr);
@@ -81,7 +82,7 @@ public class MainActivity extends Activity {
 	private Handler handler = new Handler();
 	private Runnable task = new Runnable() {
 		public void run() {
-			handler.postDelayed(this, 100);// 设置延迟时间，此处是5秒,300
+			handler.postDelayed(this, 300);// 设置延迟时间，此处是5秒,300
 			runflash();
 		}
 	};
@@ -92,8 +93,16 @@ public class MainActivity extends Activity {
 		showindex++;
 		if(measureHeight==0){
 			measureHeight=fl.getMeasuredHeight();
+			measureWidth=fl.getMeasuredWidth();
+			int w=textview_old.getWidth();
 			int h=textview_old.getHeight();
 			num_h= (int) Math.ceil((float)measureHeight/(float)h);
+			num_w=(int)Math.ceil((float)measureWidth/(float)w);
+			measureHeight-=h;
+			Log.i("vc", "measureHeight:"+measureHeight+",measureWidth:"+measureWidth+",h:"+h+",w:"+w);
+			Log.i("vc", "num_h:"+num_h+",num_w:"+num_w);
+			
+			
 		}
 		if(showindex>=shownum*(base_n+1)){
 			showindex=0;
@@ -102,13 +111,12 @@ public class MainActivity extends Activity {
 			//handler.removeCallbacks(task);
 			//return;
 		}
-		
-		if(showindex!=0 && (showindex+1)%((num_h+1)*num_w)==0){
-			top_FlowLayout-= measureHeight;//(num_h-1)*45,(screenHeight-barHeight)
+		//Log.i("vc", "showindex:"+showindex);
+		if(showindex!=0 && (showindex+1)%(num_h*num_w)==0){
+			top_FlowLayout-= measureHeight;
 			fl.layout(0, top_FlowLayout, screenWidth, screenHeight);
 		}
 		
-		//System.out.println("showindex:"+showindex);
 		TextView textview_new=(TextView)textviewlist.get(showindex);
 		textview_new.setTextColor(flash_color);
 	}
