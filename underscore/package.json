@@ -1,0 +1,15 @@
+{
+  "name": "underscore",
+  "version": "1.0.0",
+  "description": "underscore",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "carlleton",
+  "license": "MIT",
+  "dependencies": {
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.1.1"
+  }
+}
