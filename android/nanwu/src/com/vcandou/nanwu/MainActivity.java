@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -18,6 +16,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//设置常亮
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setContentView(R.layout.activity_main);
 		
 		init();
