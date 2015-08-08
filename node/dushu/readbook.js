@@ -22,7 +22,7 @@ Readbook.prototype.read=function(url,top,bookname,res,ep){
 		
 		res.write(str);
 		ep.emit('readed',bookname);
-		console.log('readend:'+bookname);
+		//console.log('readend:'+bookname);
 	});
 };
 Readbook.prototype.check_baidutieba=function(text,top){//百度贴吧
