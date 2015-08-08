@@ -30,7 +30,7 @@ console.log('app is running at port 3000');
 
 
 function readbooks(res){
-	var n=books.length;console.log('n:'+n);
+	var n=books.length;
 	var ep=new eventproxy();
 	ep.after("readed",n,function(names){
 		res.end('</body></html>');
