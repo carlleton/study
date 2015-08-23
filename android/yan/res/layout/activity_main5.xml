@@ -21,4 +21,18 @@
         android:completionThreshold="2"
         android:hint="请输入你要搜索的关键词" />
 
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOn="开"
+        android:textOff="关"
+         />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
 </LinearLayout>
