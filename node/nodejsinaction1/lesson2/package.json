@@ -1,0 +1,15 @@
+{
+  "name": "lesson2",
+  "version": "0.0.1",
+  "description": "lesson2",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "carlleton",
+  "license": "MIT",
+  "dependencies": {
+    "mime": "^1.3.4",
+    "socket.io": "^1.3.6"
+  }
+}
