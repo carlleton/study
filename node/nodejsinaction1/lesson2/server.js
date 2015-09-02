@@ -14,7 +14,9 @@ var server=http.createServer(function(request,response){
         filePath='public'+request.url;
     }
     var absPath = './'+filePath;
+    if(absPath=='./public/favicon.ico')return;
     serverStatic(response,cache,absPath);
+    response.end();
 });
 //启动HTTP服务器
 server.listen(3001,function(){
@@ -33,13 +35,14 @@ function sendFile(response,filePath,fileContents){
         200,
         {"content-type":mime.lookup(path.basename(filePath))}
     );
+    response.end(fileContents);
 }
 //提供静态文件服务
 function serverStatic(response,cache,absPath){
     if(cache[absPath]){//检查文件是否缓存在内存中
         sendFile(response,absPath,cache[absPath]);
     }else{
-        fs.exits(absPath,function(exists){//检查文件是否存在
+        fs.exists(absPath,function(exists){//检查文件是否存在
             if(exists){
                 fs.readFile(absPath,function(err,data){
                     if(err){
