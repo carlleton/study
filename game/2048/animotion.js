@@ -7,8 +7,8 @@ function showNumberWithAnimation(i,j,randNumber){
 	numberCell.text(randNumber);
 	
 	numberCell.animate({
-	   width:'100px',
-	   height:'100px',
+	   width:itemW,
+	   height:itemH,
 	   top:getPosTop(i,j),
 	   left:getPosLeft(i,j)
 	},show_time);
@@ -20,4 +20,7 @@ function showMoveAnimation(fromX,fromY,toX,toY){
 		top:getPosTop(toX,toY),
 		left:getPosLeft(toX,toY)
 	},move_time);
+}
+function updateScore(score){
+	$('#score').text(score);
 }
