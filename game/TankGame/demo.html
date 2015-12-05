@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html5</title>
+</head>
+<body>
+	<header></header>
+	<canvas id="myCanvas" width="500px" height="400px" style="border:1px solid red;"></canvas>
+	<footer></footer>
+	<script type="text/javascript">
+	//创建画布
+	var myCanvas=document.getElementById('myCanvas');
+	//得到上下文环境——画笔
+	var cxt=myCanvas.getContext("2d");
+	console.log(cxt);
+	//画出一个填充矩形
+	cxt.fillStyle='#FF0000';//填充颜色
+	cxt.fillRect(0,0,30,30);
+	//画一个直线
+	cxt.moveTo(20,20);	//定位
+	cxt.lineTo(50,40);	
+	cxt.stroke();		//画出直线
+	//画出一个填充的三角形
+	cxt.beginPath();	//开始新路径
+	cxt.moveTo(40,20);
+	cxt.lineTo(40,90);
+	cxt.lineTo(80,90);
+	cxt.closePath();	//闭合路径
+	cxt.fill();			//填充
+	//cxt.stroke();		//画线，画成空心的
+	
+	//画一个空心的矩形
+	cxt.strokeRect(100,20,70,70);
+	//画一个实心矩形
+	cxt.fillStyle='#00ff00';
+	cxt.fillRect(190,20,50,50);	
+	//画一个圆形
+	//context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+	cxt.beginPath();
+	cxt.arc(270,40,20,0,2*Math.PI,true);
+	cxt.closePath();
+	cxt.stroke();
+	
+	cxt.beginPath();
+	cxt.arc(370,40,20,0,2*Math.PI,true);
+	cxt.closePath();
+	cxt.fill();
+	
+	//画图片
+	var img=new Image();
+	img.src="wz.jpg";
+	img.onload=function(){console.log('aaa');
+		cxt.drawImage(img,20,100);
+	};
+	//绘制填充的文字
+	cxt.font="30px Georgia";
+	cxt.fillText("Hello World!",200,230);
+	</script>
+</body>
+</html>
