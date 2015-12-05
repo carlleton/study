@@ -4,10 +4,14 @@
 	<meta charset="UTF-8">
 	<title>Tank Games</title>
 	<link rel="stylesheet" type="text/css" href="index.css" />
-	<script type="text/javascript" src="config.js"></script>
-	<script type="text/javascript" src="index.js"></script>
 </head>
-<body>
-	
+<body onkeydown="keydown(event);" onload="main();">
+	<header>
+		<h1>经典的坦克大战</h1>
+	</header>
+	<canvas id="myCanvas" width="400px" height="300px"></canvas>
+	<script type="text/javascript" src="config.js"></script>
+	<script type="text/javascript" src="jianyi.js"></script>
+	<script type="text/javascript" src="index.js"></script>
 </body>
 </html>
