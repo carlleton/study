@@ -5,8 +5,7 @@ var MARGIN_LEFT=30;
 var Radius=8;
 var canvas=null;
 var cxt=null;
-var endTime=new Date();
-endTime.setTime(endTime.getTime()+3600*1000);
+//var endTime=new Date(2015,11,7,12,34,56);
 var curShowSeconds=0;
 
 var balls=[];
@@ -67,7 +66,7 @@ function flashClock(){//刷新时钟，判断是否变化
 		}
 		curShowSeconds=newCurseconds;
 	}
-	console.log('balls:'+balls.length);
+	//console.log('balls:'+balls.length);
 }
 function flashBalls(){
 	for(var i=0,n=balls.length;i<n;i++){
@@ -92,8 +91,8 @@ function flashBalls(){
 }
 function getCurseconds(){//倒计时的总秒数
 	var now=new Date();
-	var ret=Math.round((endTime.getTime()-now.getTime())/1000);
-	return ret>0?ret:0;
+	var ret=now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+	return ret;
 }
 function addBall(x,y,num){
 	var r=Radius;
