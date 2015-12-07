@@ -13,13 +13,19 @@
 		canvas.height=500;
 		
 		var context=canvas.getContext('2d');
-		context.fillStyle='black';
+		//context.fillStyle='black';
+		//
+		
+		var skyStyle=context.createLinearGradient(0,0,0,canvas.height);
+		skyStyle.addColorStop(0.0,'black');
+		skyStyle.addColorStop(1.0,'#035');
+		context.fillStyle=skyStyle;
 		context.fillRect(0,0,canvas.width,canvas.height);
 		
 		for(var i=0;i<200;i++){
-			var r=Math.random()*10+10;
+			var r=Math.random()*3+5;
 			var x=Math.random()*canvas.width;
-			var y=Math.random()*canvas.height;
+			var y=Math.random()*canvas.height*0.65;
 			var a=Math.random()*360;
 			
 			if(x-r/2<0)x+=r/2;
