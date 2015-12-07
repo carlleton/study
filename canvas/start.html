@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>五角星</title>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="400" style="border:1px solid #ccc;"></canvas>
+	<script>
+	var canvas=document.getElementById('canvas');
+	var context=canvas.getContext('2d');
+
+	
+	context.lineWidth=2;
+	drawStar(context,20,50,100,100,30);
+	
+	function drawStar(cxt,r,R,x,y,rot){
+		cxt.beginPath();
+		cxt.lineJoin='round';
+		for(var i=0;i<5;i++){
+			cxt.lineTo(Math.cos((18+i*72-rot)/180*Math.PI)*R+x,
+					-Math.sin((18+i*72-rot)/180*Math.PI)*R+y);
+			cxt.lineTo(Math.cos((54+i*72-rot)/180*Math.PI)*r+x,
+					-Math.sin((54+i*72-rot)/180*Math.PI)*r+y);
+		}
+		cxt.closePath();
+		context.stroke();
+	}
+	</script>
+</body>
+</html>
