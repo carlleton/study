@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>五角星</title>
+</head>
+<body>
+	<canvas id="canvas" style="border:1px solid #ccc;"></canvas>
+	<script>
+	window.onload=function(){
+		var canvas=document.getElementById('canvas');
+		canvas.width=800;
+		canvas.height=500;
+		
+		var context=canvas.getContext('2d');
+		//context.fillStyle='black';
+		//
+		
+		var skyStyle=context.createLinearGradient(0,0,0,canvas.height);
+		skyStyle.addColorStop(0.0,'black');
+		skyStyle.addColorStop(1.0,'#035');
+		context.fillStyle=skyStyle;
+		context.fillRect(0,0,canvas.width,canvas.height);
+		
+		for(var i=0;i<200;i++){
+			var r=Math.random()*3+5;
+			var x=Math.random()*canvas.width;
+			var y=Math.random()*canvas.height*0.65;
+			var a=Math.random()*360;
+			
+			if(x-r/2<0)x+=r/2;
+			if(x+r/2>canvas.width)x-=r/2;
+			if(y-r/2<0)y+=r/2;
+			if(y+r/2>canvas.height)y-=r/2;
+			
+			drawStar(context,x,y,r,a);
+		}
+	};
+	
+	function drawStar(cxt,x,y,R,rot){
+		cxt.save();
+		
+		
+		cxt.translate(x,y);
+		cxt.rotate(rot/180*Math.PI);
+		
+		cxt.scale(R,R);
+		
+		startPath(cxt);
+		
+		cxt.fillStyle='#fb3';
+		//cxt.strokeStyle='#fd5';
+		//cxt.lineWidth=3;
+		//cxt.lineJoin='round';
+		
+		cxt.fill();
+		//cxt.stroke();
+		
+		cxt.restore();
+	}
+	function startPath(cxt){
+		cxt.beginPath();
+		for(var i=0;i<5;i++){
+			cxt.lineTo(Math.cos((18+i*72)/180*Math.PI),
+					-Math.sin((18+i*72)/180*Math.PI));
+			cxt.lineTo(Math.cos((54+i*72)/180*Math.PI)*0.5,
+					-Math.sin((54+i*72)/180*Math.PI)*0.5);
+		}
+		cxt.closePath();
+	}
+	</script>
+</body>
+</html>
