@@ -2,3 +2,4 @@ node_modules/
 .idea/
 bin/
 angular-phonecat/
+/bootstrap/bootstrap-3.3.5-dist.zip
