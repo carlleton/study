@@ -3,3 +3,4 @@ node_modules/
 bin/
 angular-phonecat/
 /bootstrap/bootstrap-3.3.5-dist.zip
+.sass-cache
