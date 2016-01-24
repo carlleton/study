@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/*
+/*!
  * SETTINGS
  * variables.................变量集中存储文件
  * mixin.....................mixin集中存储文件
@@ -12,7 +12,8 @@
  * screen.scss...............针对当前主页的样式修饰
  */
 
-@import "variables","mixin","compass/reset";
+@import "variables","mixin";
+@import "normalize";
 
 .headline{
     font-family:$headline-ff;
