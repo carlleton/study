@@ -1,2 +1,9 @@
-body.theme{}
-body.theme #header{background:#EFEFEF;}
+#header{background:#EFEFEF;}
+.editor-container{background:#ccc;}
+.ace-tomorrow-night{background-color:#fff;color:#333;}
+.editor-tab li.ui-tabs-active a{background:#999;}
+.ace-tomorrow-night .ace_gutter{background:rgba(37, 40, 44, 0.52);}
+.editor-btn{background-color:#ccc;}
+.editor-commit{background-color:#ccc;}
+#footer{background:#ccc;}
+.section-list{background:#ccc;}
