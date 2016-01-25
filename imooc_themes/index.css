@@ -1,2 +1,6 @@
 body.theme{}
 body.theme #header{background:#EFEFEF;}
+body.theme .editor-container{background:#ccc;}
+body.theme .ace-tomorrow-night{background-color:#fff;color:#333;}
+body.theme .editor-tab li.ui-tabs-active a{background:#999;}
+body.theme .ace-tomorrow-night .ace_gutter{background:rgba(37, 40, 44, 0.52);}
