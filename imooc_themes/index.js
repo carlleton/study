@@ -1,6 +1,6 @@
 (function(){
 	var config={
-		firstTimeout:3*1000,
+		firstTimeout:1*1000,
 		timeout:1*1000,
 		isChanging:false,
 		url:''
@@ -56,6 +56,5 @@
 		
 		$(document).attr("title",title.text());
 		window.history.pushState(null,null,'index.html?url='+url);
-		
 	}
 })();
