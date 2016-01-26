@@ -54,9 +54,10 @@
 		body.append(csstag)
 		config.url=url;
 		
-		var jwplayer=iframe.find("#video-box");
-		jwplayer.css("background-color","#ccc");
 		
+		iframe.find("#video-box").css("background-color","#ccc");
+		iframe.find("#video-box_controlbar").css({"opacity","1","background-color":"#ccc"});
+		iframe.find("#video-box_caption span").css("background-color","#ccc");
 		$(document).attr("title",title.text());
 		window.history.pushState(null,null,'index.html?url='+url);
 	}
