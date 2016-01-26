@@ -54,6 +54,9 @@
 		body.append(csstag)
 		config.url=url;
 		
+		var jwplayer=iframe.find("#video-box");
+		jwplayer.css("background-color","#ccc");
+		
 		$(document).attr("title",title.text());
 		window.history.pushState(null,null,'index.html?url='+url);
 	}
