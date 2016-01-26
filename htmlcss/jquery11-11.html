@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义jquery组件</title>
+	<style type="text/css">
+	li{background-color:#ccc;}
+	li:nth-child(2n){background-color:#ff0000;}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>01.这是第01项元素</li>
+		<li>02.这是第02项元素</li>
+		<li>03.这是第03项元素</li>
+		<li>04.这是第04项元素</li>
+		<li>05.这是第05项元素</li>
+	</ul>
+	<div id="showText"></div>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+	(function(){
+		$.extend({
+			"focusChangeBackground":function(pobj,showid){
+				var str="背景颜色是：";
+				var $pobj=$(pobj);
+				var $showid=$(showid);
+				$pobj.children("li").mouseover(function(){
+					var color=$(this).css("background-color");
+					$showid.html(str+color);
+				});
+			}
+		});
+	})();
+	$.focusChangeBackground("ul","#showText");
+	</script>
+</body>
+</html>

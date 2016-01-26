@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>prev ~ siblings选择器</title>
+        <script src="jquery.js" type="text/javascript"></script>
+        <style type="text/css">
+		div, p, label{
+			float: left;
+			border: solid 1px #ccc;
+			margin: 5px;
+			padding: 5px;
+		}
+		p,label{
+			width:230px;
+			height:30px;
+		}
+		p{
+			border: solid 1px red;
+		}
+		</style>
+    </head>
+    
+    <body>
+        <div>
+            码农家族
+            <label></label>
+            <p></p>
+            <label></label>
+            <label></label>
+        </div>
+        <label></label>
+        
+        <script type="text/javascript">
+        $("div p ~ label").css("border", "solid 1px red");
+        $("div p ~ label").html("我们都是p先生的粉丝");
+        </script>
+    </body>
+</html>
