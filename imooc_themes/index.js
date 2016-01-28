@@ -3,13 +3,13 @@
 		firstTimeout:1*1000,
 		timeout:1*1000,
 		isChanging:false,
+		domLoading:false,
 		url:''
 	};
 	var cssData='';
 	$(document).ready(function(){
 		resizeIframe();
 		$(window).resize(resizeIframe);
-		var iframe=$(window.frames["iframe1"].document);
 		var url=getUrlParam('url');
 		$("#iframe1").attr('src',url);
 		
@@ -18,14 +18,7 @@
 			success:function(data){
 				cssData=data;
 				setInterval(function(){
-					var url=iframe.context.URL;
-					if(!config.isChanging && url!==config.url){
-						config.isChanging=true;
-						setTimeout(function(){
-							setIframeCSS();
-							config.isChanging=false;
-						},config.firstTimeout);
-					}
+					setIframeCSS();
 				},config.timeout);
 			}
 		});
@@ -46,19 +39,32 @@
 	function setIframeCSS(){
 		var iframe=$(window.frames["iframe1"].document);
 		var url=iframe.context.URL;
+		if(!config.domLoading){
+			iframe.find("#video-box").css("background-color","#ccc");
+			iframe.find("#video-box_controlbar").css({"opacity":"1","background-color":"#ccc"});
+			iframe.find("#video-box_caption span").css("background-color","#ccc");
+			config.domLoading=true;
+		}else{
+			config.domLoading=false;
+		}
+		
+		if(config.isChanging)return;
+		if(url===config.url)return;
+
+		config.domLoading=false;
+		config.isChanging=true;
+		config.url=url;
+
 		var head=iframe.find("head");
 		var body=iframe.find("body");
 		var title=iframe.find("title");
 		var csstag='<style type="text/css">'+cssData+'</style>';
 		//head.html(head.html()+csstag);
-		body.append(csstag)
-		config.url=url;
+		body.append(csstag);
 		
-		
-		iframe.find("#video-box").css("background-color","#ccc");
-		iframe.find("#video-box_controlbar").css({"opacity":"1","background-color":"#ccc"});
-		iframe.find("#video-box_caption span").css("background-color","#ccc");
+
 		$(document).attr("title",title.text());
 		window.history.pushState(null,null,'index.html?url='+url);
+		config.isChanging=false;
 	}
 })();
