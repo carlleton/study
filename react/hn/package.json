@@ -1,0 +1,23 @@
+{
+  "name": "hn",
+  "version": "0.1.0",
+  "private": true,
+  "browserify": {
+    "transform": [
+      [
+        "reactify"
+      ]
+    ]
+  },
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "lodash": "^4.2.0",
+    "moment": "^2.11.1",
+    "react": "^0.14.7"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "reactify": "^1.1.1",
+    "watchify": "^3.7.0"
+  }
+}
