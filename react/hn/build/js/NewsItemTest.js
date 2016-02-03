@@ -1594,11 +1594,31 @@ var NewsItem = React.createClass({displayName: "NewsItem",
 			)
 		);
 	},
+	getRank:function(){
+		return (
+			React.createElement("div", {className: "newsItem-rank"}, 
+				this.props.rank, "."
+			)
+		);
+	},
+	getVote:function(){
+		return (
+			React.createElement("div", {className: "newsItem-vote"}, 
+				React.createElement("a", {href: 'https://news.ycombinator.com/vote?for='+this.props.item.id+'&dir=up&whence=news'}, 
+					React.createElement("img", {src: "../img/grayarrow2x.gif", width: "10"})
+				)
+			)
+		);
+	},
 	render:function(){
 		return (
 			React.createElement("div", {className: "newsItem"}, 
-				this.getTitle(), 
-				this.getSubtext()
+				this.getRank(), 
+				this.getVote(), 
+				React.createElement("div", {className: "newsItem-itemText"}, 
+					this.getTitle(), 
+					this.getSubtext()
+				)
 			)
 		);
 	}
