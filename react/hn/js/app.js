@@ -2,6 +2,7 @@ var _=require('lodash');
 var $=require('jquery');
 var NewsList = require('./NewsList');
 var React=require('react');
+var ReactDOM=require('react-dom');
 
 $.ajax({
 	url:'https://hacker-news.firebaseio.com/v0/topstories.json',
@@ -19,5 +20,5 @@ $.ajax({
 		return argument[0];
 	}).value();
 	
-	React.render(<NewsList items={items}/>,$('#content')[0]);
+	ReactDOM.render(<NewsList items={items}/>,$('#content')[0]);
 });
