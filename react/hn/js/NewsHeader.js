@@ -56,12 +56,20 @@ var NewsHeader=React.createClass({
 			</div>
 		);
 	},
+	getLogin:function(){
+		return (
+			<div className="newsHeader-login">
+				<a className="newsHeader-textLink" href="https://news.ycombinator.com/login?whence=news">login</a>
+			</div>
+		);
+	},
 	render:function(){
 		return (
 			<div className="newsHeader">
 				{this.getLogo()}
 				{this.getTitle()}
 				{this.getNav()}
+				{this.getLogin()}
 			</div>
 		);
 	}

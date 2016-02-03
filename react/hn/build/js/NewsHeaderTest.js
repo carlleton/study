@@ -150,12 +150,20 @@ var NewsHeader=React.createClass({displayName: "NewsHeader",
 			)
 		);
 	},
+	getLogin:function(){
+		return (
+			React.createElement("div", {className: "newsHeader-login"}, 
+				React.createElement("a", {className: "newsHeader-textLink", href: "https://news.ycombinator.com/login?whence=news"}, "login")
+			)
+		);
+	},
 	render:function(){
 		return (
 			React.createElement("div", {className: "newsHeader"}, 
 				this.getLogo(), 
 				this.getTitle(), 
-				this.getNav()
+				this.getNav(), 
+				this.getLogin()
 			)
 		);
 	}

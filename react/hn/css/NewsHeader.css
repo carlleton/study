@@ -26,3 +26,6 @@
 .newsHeader-navLink:not(:first-child)::before{
 	content:' | ';
 }
+.newsHeader-login{
+	margin-right:5px;
+}
