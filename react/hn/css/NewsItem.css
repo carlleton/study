@@ -11,3 +11,13 @@
 	font-size:8pt;
 	margin-left:5px;
 }
+.newsItem-subtext{
+	font-size:7pt;
+}
+.newsItem-subtext > a{
+	color:#828282;
+	text-decoration:none;
+}
+.newsItem-subtext > a:hover{
+	text-decoration:underline;
+}
