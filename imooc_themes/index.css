@@ -14,3 +14,8 @@
 
 .jwdisplay .jwpreview{background:10% 10% no-repeat rgb(0, 0, 0);}
 .jwinstream{background-color:#ccc;}
+/*顶部搜索框*/
+.search-area{background:#fff;}
+.search-area .search-input{background:#fff;}
+/*控制栏背景*/
+#video-box_controlbar .jwbackground{background:#ccc;}

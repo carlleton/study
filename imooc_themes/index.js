@@ -27,7 +27,8 @@
 	function getUrlParam(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 		var r = window.location.search.substr(1).match(reg);
-		if (r != null) return unescape(r[2]); return null;
+		if (r != null) return unescape(r[2]); 
+		return null;
 	}
 	/**计算iframe的宽高**/
 	function resizeIframe(){
@@ -55,10 +56,10 @@
 		config.isChanging=true;
 		config.url=url;
 
-		var head=iframe.find("head");
-		var body=iframe.find("body");
-		var title=iframe.find("title");
-		var csstag='<style type="text/css">'+cssData+'</style>';
+		var head=iframe.find("head"),
+			body=iframe.find("body"),
+			title=iframe.find("title"),
+			csstag='<style type="text/css">'+cssData+'</style>';
 		//head.html(head.html()+csstag);
 		body.append(csstag);
 		
