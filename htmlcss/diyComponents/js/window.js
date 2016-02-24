@@ -2,21 +2,24 @@ define(['jquery'],function($){
 	function Window(){
 		this.cfg={
 			width:500,
-			height:300
+			height:300,
+			content:"",
+			handler:null
 		}
 	}
 	Window.prototype={
-		alert:function(content,handler,cfg){
+		alert:function(cfg){
+			var CFG=$.extend(this.cfg,cfg);
 			var boundingBox=$('<div class="window_boundingBox"></div>');
 			boundingBox.appendTo("body");
-			boundingBox.html(content);
+			boundingBox.html(CFG.content);
 			var btn = $('<input type="button" value="确定">');
 			btn.appendTo(boundingBox);
 			btn.click(function(){
-				handler&&handler();
+				CFG.handler&&CFG.handler();
 				boundingBox.remove();
 			});
-			$.extend(this.cfg,cfg);
+			
 			boundingBox.css({
 				width:this.cfg.width+"px",
 				height:this.cfg.height+"px",
