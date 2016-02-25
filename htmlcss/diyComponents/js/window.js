@@ -6,6 +6,7 @@ define(['jquery'],function($){
 			title:"系统消息",
 			content:"",
 			hasCloseBtn:false,
+			skinClassName:"",
 			handler4AlertBtn:null,
 			handler4CloseBtn:null
 		}
@@ -39,6 +40,9 @@ define(['jquery'],function($){
 					CFG.handler4CloseBtn&&CFG.handler4CloseBtn();
 					boundingBox.remove();
 				});
+			}
+			if(CFG.skinClassName){
+				boundingBox.addClass(CFG.skinClassName);
 			}
 		},
 		confirm:function(){},

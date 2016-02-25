@@ -1,6 +1,14 @@
 .window_boundingBox{position:fixed;border:1px solid #000;box-shadow:0 0 12px rgba(0,0,0,.5);}
-.window_boundingBox input{width:100px;position:absolute;bottom:10px;left:50%;margin-left:-50px;}
+.window_closeBtn{position:absolute;right:0;top:0;padding: 5px 10px;font-size:20px;background:blue;color:#fff;cursor: pointer;}
 .window_header{background:#333;color:#fff;text-align:center;padding:5px;font-size: 20px;}
 .window_body{padding:10px;}
-.window_closeBtn{position:absolute;right:0;top:0;padding: 5px 10px;font-size:20px;background:blue;color:#fff;cursor: pointer;}
-.window_alertBtn{width:100px;position: absolute;bottom:10px;left:50%;margin-left:50px;}
+.window_alertBtn{width:100px;position: absolute;bottom:10px;left:50%;margin-left:-50px;}
+
+
+
+/* skin for a*/
+.window_skin_a.window_boundingBox{border:10px solid #ccc;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius:10px;}
+.window_skin_a .window_closeBtn{background:blue; padding:10px;top:-15px;right:-15px;width:20px;height:20px;text-align:center; -moz-border-radius:20px; -webkit-border-radius:20px; border-radius:20px;}
+.window_skin_a .window_header{background:#eb0103; text-align:left;height:30px;padding:10px;line-height:30px;}
+.window_skin_a .window_body{text-align:left;}
+.window_skin_a .window_alertBtn{background:#eb0103; padding:10px 5px;color:#fff;border:none;}

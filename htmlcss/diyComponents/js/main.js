@@ -7,7 +7,7 @@ require(['jquery','Window'],function($,w){
 	$("#a").click(function(){
 		new w.Window().alert({
 			title:"提示",
-			content:"welcome",
+			content:"welcome!",
 			handler4AlertBtn:function(){
 				alert('clicked the button');
 			},
@@ -17,7 +17,8 @@ require(['jquery','Window'],function($,w){
 			width:300,
 			height:150,
 			y:50,
-			hasCloseBtn:true
+			hasCloseBtn:true,
+			skinClassName:"window_skin_a",
 		});
 	});
 });
