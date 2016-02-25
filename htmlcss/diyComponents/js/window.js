@@ -6,6 +6,7 @@ define(['jquery'],function($){
 			title:"系统消息",
 			content:"",
 			hasCloseBtn:false,
+			hasMask:true,
 			skinClassName:"",
 			text4AlertBtn:"确定",
 			handler4AlertBtn:null,
@@ -14,18 +15,25 @@ define(['jquery'],function($){
 	}
 	Window.prototype={
 		alert:function(cfg){
-			var CFG=$.extend(this.cfg,cfg);
-			var boundingBox=$('<div class="window_boundingBox">'+
+			var CFG=$.extend(this.cfg,cfg),
+			boundingBox=$('<div class="window_boundingBox">'+
 				'<div class="window_header">'+CFG.title+'</div>'+
 				'<div class="window_body">'+CFG.content+'</div>'+
 				'<div class="window_footer"><input type="button" class="window_alertBtn" value="'+CFG.text4AlertBtn+'"></div>'+
-				'</div>');
-			
+				'</div>'),
+			btn=boundingBox.find(".window_alertBtn"),
+			mask=null;
+
+			if(CFG.hasMask){
+				mask=$('<div class="window_mask"></div>');
+				mask.appendTo("body");
+			}
+
 			boundingBox.appendTo("body");
-			btn=boundingBox.find(".window_alertBtn");
 			btn.click(function(){
 				CFG.handler4AlertBtn&&CFG.handler4AlertBtn();
 				boundingBox.remove();
+				mask&&mask.remove();
 			});
 			
 			boundingBox.css({
@@ -40,6 +48,7 @@ define(['jquery'],function($){
 				closeBtn.click(function(){
 					CFG.handler4CloseBtn&&CFG.handler4CloseBtn();
 					boundingBox.remove();
+					mask&&mask.remove();
 				});
 			}
 			if(CFG.skinClassName){
