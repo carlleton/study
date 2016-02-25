@@ -8,17 +8,18 @@ require(['jquery','Window'],function($,w){
 		new w.Window().alert({
 			title:"提示",
 			content:"welcome!",
+			width:300,
+			height:150,
+			y:50,
+			hasCloseBtn:true,
+			text4AlertBtn:"OK",
+			skinClassName:"window_skin_a",
 			handler4AlertBtn:function(){
 				alert('clicked the button');
 			},
 			handler4CloseBtn:function(){
 				alert('close btn');
 			},
-			width:300,
-			height:150,
-			y:50,
-			hasCloseBtn:true,
-			skinClassName:"window_skin_a",
 		});
 	});
 });

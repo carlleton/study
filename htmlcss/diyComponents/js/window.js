@@ -7,6 +7,7 @@ define(['jquery'],function($){
 			content:"",
 			hasCloseBtn:false,
 			skinClassName:"",
+			text4AlertBtn:"确定",
 			handler4AlertBtn:null,
 			handler4CloseBtn:null
 		}
@@ -17,7 +18,7 @@ define(['jquery'],function($){
 			var boundingBox=$('<div class="window_boundingBox">'+
 				'<div class="window_header">'+CFG.title+'</div>'+
 				'<div class="window_body">'+CFG.content+'</div>'+
-				'<div class="window_footer"><input type="button" class="window_alertBtn" value="确定"></div>'+
+				'<div class="window_footer"><input type="button" class="window_alertBtn" value="'+CFG.text4AlertBtn+'"></div>'+
 				'</div>');
 			
 			boundingBox.appendTo("body");
