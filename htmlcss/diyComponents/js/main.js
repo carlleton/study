@@ -63,4 +63,13 @@ require(['jquery','Window'],function($,w){
 			alert("取消");
 		});
 	});
+	$("#d").click(function(){
+		new w.Window().common({
+			content:"我是一个通用窗体",
+			width:300,
+			height:150,
+			y:50,
+			hasCloseBtn:true
+		});
+	});
 });
