@@ -1,4 +1,4 @@
-define(['jquery','jqueryUI'],function($,$UI){
+define(['widget','jquery','jqueryUI'],function(widget,$,$UI){
 	function Window(){
 		this.cfg={
 			width:500,
@@ -14,25 +14,8 @@ define(['jquery','jqueryUI'],function($,$UI){
 			handler4AlertBtn:null,
 			handler4CloseBtn:null
 		}
-		this.handlers=[];
 	}
-	Window.prototype={
-		on:function(type,handler){
-			if(typeof this.handlers[type]=="undefined"){
-				this.handlers[type]=[];
-			}
-			this.handlers[type].push(handler);
-			return this;
-		},
-		fire:function(type,data){
-			if(this.handlers[type] instanceof Array){
-				var handlers=this.handlers[type];
-				for(var i=0,len=handlers.length;i<len;i++){
-					handlers[i](data);
-				}
-			}
-			return this;
-		},
+	Window.prototype=$.extend({},new widget.Widget(),{
 		alert:function(cfg){
 			var CFG=$.extend(this.cfg,cfg),
 			boundingBox=$('<div class="window_boundingBox">'+
@@ -92,7 +75,7 @@ define(['jquery','jqueryUI'],function($,$UI){
 		},
 		confirm:function(){},
 		prompt:function(){}
-	};
+	});
 	return {
 		Window:Window
 	};
