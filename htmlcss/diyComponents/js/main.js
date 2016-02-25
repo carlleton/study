@@ -6,6 +6,7 @@ require.config({
 require(['jquery','Window'],function($,w){
 	$("#a").click(function(){
 		new w.Window().alert({
+			title:"提示",
 			content:"welcome",
 			handler:function(){
 				alert('clicked the button');

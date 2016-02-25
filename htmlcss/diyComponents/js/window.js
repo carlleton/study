@@ -3,6 +3,7 @@ define(['jquery'],function($){
 		this.cfg={
 			width:500,
 			height:300,
+			title:"系统消息",
 			content:"",
 			handler:null
 		}
@@ -10,11 +11,14 @@ define(['jquery'],function($){
 	Window.prototype={
 		alert:function(cfg){
 			var CFG=$.extend(this.cfg,cfg);
-			var boundingBox=$('<div class="window_boundingBox"></div>');
+			var boundingBox=$('<div class="window_boundingBox">'+
+				'<div class="window_header">'+CFG.title+'</div>'+
+				'<div class="window_body">'+CFG.content+'</div>'+
+				'<div class="window_footer"><input type="button" value="确定"></div>'+
+				'</div>');
+			
 			boundingBox.appendTo("body");
-			boundingBox.html(CFG.content);
-			var btn = $('<input type="button" value="确定">');
-			btn.appendTo(boundingBox);
+			btn=boundingBox.find(".window_footer input");
 			btn.click(function(){
 				CFG.handler&&CFG.handler();
 				boundingBox.remove();
