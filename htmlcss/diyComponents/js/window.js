@@ -11,16 +11,29 @@ define(['widget','jquery','jqueryUI'],function(widget,$,$UI){
 			dragHandle:null,
 			skinClassName:"",
 			text4AlertBtn:"确定",
+			text4ConfirmBtn:"确定",
+			text4CancleBtn:"取消",
 			handler4AlertBtn:null,
-			handler4CloseBtn:null
+			handler4CloseBtn:null,
+			handler4ConfirmBtn:null,
+			handler4CancleBtn:null,
 		}
 	}
 	Window.prototype=$.extend({},new widget.Widget(),{
 		renderUI:function(){
+			var footerContent="";
+			switch(this.cfg.winType){
+				case "alert":
+					footerContent='<input type="button" value="'+this.cfg.text4AlertBtn+'" class="window_alertBtn">';
+					break;
+				case "confirm":
+					footerContent='<input type="button" value="'+this.cfg.text4ConfirmBtn+'" class="window_confirmBtn"><input type="button" value="'+this.cfg.text4CancleBtn+'" class="window_cancleBtn">';
+					break;
+			}
 			this.boundingBox=$('<div class="window_boundingBox">'+
 				'<div class="window_header">'+this.cfg.title+'</div>'+
 				'<div class="window_body">'+this.cfg.content+'</div>'+
-				'<div class="window_footer"><input type="button" class="window_alertBtn" value="'+this.cfg.text4AlertBtn+'"></div>'+
+				'<div class="window_footer">'+footerContent+'</div>'+
 				'</div>');
 			if(this.cfg.hasMask){//遮罩
 				this._mask=$('<div class="window_mask"></div>');
@@ -39,12 +52,24 @@ define(['widget','jquery','jqueryUI'],function(widget,$,$UI){
 			}).delegate(".window_closeBtn","click",function(){
 				that.fire("close");
 				that.destroy();
+			}).delegate(".window_confirmBtn","click",function(){
+				that.fire("confirm");
+				that.destroy();
+			}).delegate(".window_cancleBtn","click",function(){
+				that.fire("cancle");
+				that.destroy();
 			});
 			if(this.cfg.handler4AlertBtn){
 				this.on("alert",this.cfg.handler4AlertBtn);
 			}
 			if(this.cfg.handler4CloseBtn){
 				this.on("close",this.cfg.handler4CloseBtn);
+			}
+			if(this.cfg.handler4ConfirmBtn){
+				this.on("confirm",this.cfg.handler4ConfirmBtn);
+			}
+			if(this.cfg.handler4CancleBtn){
+				this.on("cancle",this.cfg.handler4CancleBtn);
 			}
 		},
 		syncUI:function(){
@@ -69,11 +94,15 @@ define(['widget','jquery','jqueryUI'],function(widget,$,$UI){
 			this._mask&&this._mask.remove();
 		},
 		alert:function(cfg){
-			$.extend(this.cfg,cfg);
+			$.extend(this.cfg,cfg,{winType:"alert"});
 			this.render();
 			return this;
 		},
-		confirm:function(){},
+		confirm:function(cfg){
+			$.extend(this.cfg,cfg,{winType:"confirm"});
+			this.render();
+			return this;
+		},
 		prompt:function(){}
 	});
 	return {

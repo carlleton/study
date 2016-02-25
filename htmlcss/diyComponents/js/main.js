@@ -6,7 +6,7 @@ require.config({
 });
 require(['jquery','Window'],function($,w){
 	$("#a").click(function(){
-		var win = new w.Window().alert({
+		new w.Window().alert({
 			title:"提示",
 			content:"welcome!",
 			width:300,
@@ -29,5 +29,24 @@ require(['jquery','Window'],function($,w){
 		}).on("close",function(){
 			alert("close");
 		});
+	});
+	$("#b").click(function(){
+		new w.Window().confirm({
+			title:"系统消息",
+			content:"您确定要删除这个文件吗？",
+			width:300,
+			height:150,
+			y:50,
+			text4ConfirmBtn:"是",
+			text4CancleBtn:"否",
+			dragHandle:".window_header"
+		}).on("confirm",function(){
+			alert("确定");
+		}).on("cancle",function(){
+			alert("取消");
+		});
+	});
+	$("#c").click(function(){
+		
 	});
 });
