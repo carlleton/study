@@ -6,7 +6,8 @@ require.config({
 });
 require(['jquery','Window'],function($,w){
 	$("#a").click(function(){
-		new w.Window().alert({
+		var win = new w.Window();
+		win.alert({
 			title:"提示",
 			content:"welcome!",
 			width:300,
@@ -23,5 +24,8 @@ require(['jquery','Window'],function($,w){
 				alert('close btn');
 			},
 		});
+		win.on("alert",function(){alert("alert1");});
+		win.on("alert",function(){alert("alert2");});
+		win.on("close",function(){alert("close");});
 	});
 });
