@@ -5,7 +5,9 @@ define(['jquery'],function($){
 			height:300,
 			title:"系统消息",
 			content:"",
-			handler:null
+			hasCloseBtn:false,
+			handler4AlertBtn:null,
+			handler4CloseBtn:null
 		}
 	}
 	Window.prototype={
@@ -14,13 +16,13 @@ define(['jquery'],function($){
 			var boundingBox=$('<div class="window_boundingBox">'+
 				'<div class="window_header">'+CFG.title+'</div>'+
 				'<div class="window_body">'+CFG.content+'</div>'+
-				'<div class="window_footer"><input type="button" value="确定"></div>'+
+				'<div class="window_footer"><input type="button" class="window_alertBtn" value="确定"></div>'+
 				'</div>');
 			
 			boundingBox.appendTo("body");
-			btn=boundingBox.find(".window_footer input");
+			btn=boundingBox.find(".window_alertBtn");
 			btn.click(function(){
-				CFG.handler&&CFG.handler();
+				CFG.handler4AlertBtn&&CFG.handler4AlertBtn();
 				boundingBox.remove();
 			});
 			
@@ -30,6 +32,14 @@ define(['jquery'],function($){
 				left:(this.cfg.x||(window.innerWidth-this.cfg.width)/2)+"px",
 				top:(this.cfg.y||(window.innerHeight-this.cfg.height)/2)+"px"
 			});
+			if(CFG.hasCloseBtn){
+				var closeBtn = $('<span class="window_closeBtn">X</span>');
+				closeBtn.appendTo(boundingBox);
+				closeBtn.click(function(){
+					CFG.handler4CloseBtn&&CFG.handler4CloseBtn();
+					boundingBox.remove();
+				});
+			}
 		},
 		confirm:function(){},
 		prompt:function(){}

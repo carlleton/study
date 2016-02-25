@@ -8,12 +8,16 @@ require(['jquery','Window'],function($,w){
 		new w.Window().alert({
 			title:"提示",
 			content:"welcome",
-			handler:function(){
+			handler4AlertBtn:function(){
 				alert('clicked the button');
+			},
+			handler4CloseBtn:function(){
+				alert('close btn');
 			},
 			width:300,
 			height:150,
-			y:50
+			y:50,
+			hasCloseBtn:true
 		});
 	});
 });
