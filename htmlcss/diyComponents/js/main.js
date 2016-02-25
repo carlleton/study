@@ -1,6 +1,7 @@
 require.config({
 	paths:{
-		jquery:'jquery-1.12.1.min'
+		jquery:'jquery-1.12.1.min',
+		jqueryUI:'http://code.jquery.com/ui/1.10.1/jquery-ui'
 	}
 });
 require(['jquery','Window'],function($,w){
@@ -13,6 +14,7 @@ require(['jquery','Window'],function($,w){
 			y:50,
 			hasCloseBtn:true,
 			text4AlertBtn:"OK",
+			dragHandle:".window_header",
 			skinClassName:"window_skin_a",
 			handler4AlertBtn:function(){
 				alert('clicked the button');
