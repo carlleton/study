@@ -1,5 +1,31 @@
 window.onload=function(){
 	waterfall('main','box');
+	var dataInt={
+		"data":[
+			{"src":"0.jpg"},
+			{"src":"1.jpg"},
+			{"src":"2.jpg"},
+			{"src":"3.jpg"},
+		]
+	};
+	window.onscroll=function(){
+		if(checkScrollSlide()){
+			var parent=document.getElementById('main');
+			//将数据块渲染到页面的尾部
+			for(var i=0,n=dataInt.data.length;i<n;i++){
+				var box=document.createElement('div');
+				box.className='box';
+				parent.appendChild(box);
+				var pic=document.createElement('div');
+				pic.className='pic';
+				box.appendChild(pic);
+				var img=document.createElement('img');
+				img.src="images/"+dataInt.data[i].src;
+				pic.appendChild(img);
+			}
+			waterfall('main','box');
+		}
+	}
 }
 function waterfall(parent,box){
 	var oParent=document.getElementById(parent);
@@ -40,3 +66,12 @@ function getMinhIndex(arr,val){
 	}
 	return 0;
 }
+//检测是否具备了加载数据块的条件
+function checkScrollSlide(){
+	var oParent=document.getElementById('main');
+	var boxs=getByClass(oParent,'box');
+	var lastBoxH=boxs[boxs.length-1].offsetTop+Math.floor(boxs[boxs.length-1].offsetHeight/2);
+	var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+	var height=document.documentElement.clientHeight||document.body.clientHeight;
+	return lastBoxH<scrollTop+height;
+}	
