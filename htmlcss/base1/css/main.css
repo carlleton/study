@@ -1,0 +1,56 @@
+*{ margin:0; padding:0;}
+ul{list-style:none;}
+a{text-decoration:none;}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	*zoom: 1; /* HACK_IE_LTE_7: IE7及更老版本的IE不支持:after伪元素 */
+}
+
+.main{width:1000px;margin:0 auto;}
+.header{height:70px;}
+.footer{background:#eee;height:50px;font-size:14px;text-align:center;padding-top:30px;}
+
+.header .logo{float:left;}
+.header .nav{margin-left:200px;}
+.nav li{float:left;height:70px;width:100px;text-align:center;}
+.nav li a{line-height:70px; font-size:17px; display:block;color:#000;}
+.nav li a:hover,.nav li.current a{background:#BD3847;color:#fff;}
+
+.banner{width:1000px;height:318px;}
+.box{margin-top:10px;}
+.scrollnews{font-size:13px; line-height: 30px; height:30px;color:#fff;background:#3E3E3E;}
+.scrollnews h2{background:#BD3847; float:left;width:15%;text-align: center;}
+.scrollnews p{float:left;padding:0 10px;}
+
+.course{margin-right:-5px;}
+
+
+.course .common img{width:330px;height:130px;}
+.course .common p{text-align:center;font-weight:bold;line-height:30px;}
+.common p a{text-decoration: none;color:#000;}
+
+.box2{margin-right:-5px;}
+.common{float:left;width:330px;margin-right: 5px;}
+.common h3{background:#BD3847;color:#fff;font-weight: normal;height:30px;line-height:30px;padding-left:10px;}
+.common h3 a{color:#fff;}
+.common .cont{border:1px solid #ccc;height:205px;}
+
+.news li{border-bottom:1px solid #ccc;padding:5px;}
+.news .date{float:left;border-radius:5px;background:#BD3847;width:40px;text-align:center;color:#fff;}
+.news .info{float:left;width:270px;margin-left:5px;}
+.news .info h4{font-size:12px;font-weight:bold;}
+.news .info p{font-size:12px;line-height:1.5;margin-top:5px;}
+.news .info a{color:#000;}
+
+.huodong img{width:300px;height:100px;margin:5px auto;}
+.huodong a{color:#000;font-size:!2px;font-weight:bold;}
+
+.contact{font-size:14px;padding:5px;}
+.contact span{font-weight:bold;}
