@@ -1,6 +1,6 @@
 //使用gulp3.9
-//版本号
-var version = 'V2.1.1.13';
+var baseVersion='V2.1';				//基础版本
+var version = '';					//版本号，默认按V2.1.3.2格式
 //输出目录
 var outputFolder = 'E:/{version}/project';
 
@@ -9,21 +9,16 @@ var srcFolder='proName';
 var copyFiles = 'js/config.js,*.doc';
 var md5File = 'MD5.txt';
 var zipFile = 'proName.zip';
+var versionFile='version.txt';
 
-var gulp = require('gulp'),					//基础库
-	clean = require('gulp-clean'),			//清理
-	ignore = require('gulp-ignore'),		//忽略
-	jshint = require('gulp-jshint'),		//js检测
-	uglify = require('gulp-uglify'),		//压缩混淆js
-	minifycss = require('gulp-minify-css'),	//压缩css
-	htmlmin = require('gulp-htmlmin'),		//压缩html
-	imagemin = require('gulp-imagemin'),	//压缩图片
-	pngquant = require('imagemin-pngquant'),//png压缩
-	zip = require('gulp-zip'),				//打包成zip
-	notify = require('gulp-notify'),		//命令行提示
-	gulpSequence = require('gulp-sequence');//顺序执行任务
-var crypto = require('crypto');
-	var fs = require('fs');
+var now=new Date();
+if(!version){
+	version=baseVersion+'.'+(now.getMonth()+1)+'.'+(now.getDate());
+}else{
+	version=baseVersion+'.'+(now.getMonth()+1)+'.'+(now.getDate());
+	version+='.'+version;
+}
+
 
 var files_js=['js/*.js'];
 var files_css=['css/*.css'];
@@ -48,11 +43,34 @@ for(var i=0,n=files.length,ext;i<n;i++){
 	files_copy.push(files[i]);
 }
 
+
+var gulp = require('gulp'),					//基础库
+	clean = require('gulp-clean'),			//清理
+	ignore = require('gulp-ignore'),		//忽略
+	jshint = require('gulp-jshint'),		//js检测
+	uglify = require('gulp-uglify'),		//压缩混淆js
+	minifycss = require('gulp-minify-css'),	//压缩css
+	htmlmin = require('gulp-htmlmin'),		//压缩html
+	imagemin = require('gulp-imagemin'),	//压缩图片
+	pngquant = require('imagemin-pngquant'),//png压缩
+	zip = require('gulp-zip'),				//打包成zip
+	notify = require('gulp-notify'),		//命令行提示
+	gulpSequence = require('gulp-sequence');//顺序执行任务
+var crypto = require('crypto');
+	var fs = require('fs');
+	
+gulp.task('version',function(){
+	fs.writeFile(srcFolder+'/'+versionFile,version,function(err,stats){
+		if(err)return console.error('write version.txt error'+err);
+		return '';
+	});
+});
+
 gulp.task('clean',function(){
 	return gulp.src([outputFolder+'/*'],{read: false})
 		.pipe(clean({force: true}));
 });
-gulp.task('cleanSRC',function(){
+gulp.task('cleanZipFolder',function(){
 	return gulp.src(srcFolder,{read:false})
 		.pipe(clean({force:true}));
 });
@@ -81,7 +99,7 @@ gulp.task('miniimage',function(){
 			progressive: true,	//默认false，无损压缩jpg
 			interlaced: true,	//默认false，隔行扫描gif
 			multipass: true, 	//默认false，多次优化svg直到完全优化
-			use:[pngquant()]	//使用pngquant深度压缩png图片的imagemin插件
+			/*use:[pngquant()]*/	//使用pngquant深度压缩png图片的imagemin插件
 		}))
 		.pipe(gulp.dest(srcFolder+'/images'));
 		//.pipe(notify({ message: 'Images task complete' }));
@@ -129,13 +147,14 @@ gulp.task('md5',function(){
 	var str=md5+'	'+zipFile;
 	fs.writeFile(outputFolder+'/'+md5File,str,function(err,stats){
 		if(err)return console.error('open zip error'+err);
+		console.log('生成目录为：'+outputFolder);
 		return '';
 	});
 });
 
 /**总task调用其他的task**/
 gulp.task('default',['clean'],function(cb){
-	gulpSequence(['minijs','minifycss','miniimage','minihtml','copy'],'zip','cleanSRC','md5')(cb);
+	gulpSequence(['minijs','minifycss','miniimage','minihtml','copy'],'version','zip','cleanZipFolder','md5')(cb);
 });
 
 /**获取扩展名**/
