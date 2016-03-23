@@ -18,11 +18,13 @@
 				<button v-on:click="removeTodo($index)">X</button>
 			</li>
 		</ul>
+		<p v-if="greeting">test v-if</p>
 	</div>
 	<script>
-	new Vue({
+	var exampleVM=new Vue({
 		el:'#app',
 		data:{
+			greeting:true,
 			message:'Hello Vue.js!',
 			newTodo:'',
 			todos:[
