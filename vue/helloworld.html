@@ -9,6 +9,7 @@
 	<div id="app">
 		<p>{{message}}</p>
 		<input v-model="message">
+		<button v-on:click="reverseMessage">Reverse Message</button>
 		<ul>
 			<li v-for="todo in todos">
 				{{todo.text}}
@@ -25,6 +26,11 @@
 				{text:'Learn vue.js'},
 				{text:'aaaaasdf'}
 			]
+		},
+		methods:{
+			reverseMessage:function(){
+				this.message=this.message.split('').reverse().join('');
+			}
 		}
 	});
 	</script>
