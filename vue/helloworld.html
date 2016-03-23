@@ -10,9 +10,12 @@
 		<p>{{message}}</p>
 		<input v-model="message">
 		<button v-on:click="reverseMessage">Reverse Message</button>
+		<br><br>
+		增加列表项<input v-model="newTodo" v-on:keyup.enter="addTodo">
 		<ul>
 			<li v-for="todo in todos">
-				{{todo.text}}
+				<span>{{todo.text}}</span>
+				<button v-on:click="removeTodo($index)">X</button>
 			</li>
 		</ul>
 	</div>
@@ -21,6 +24,7 @@
 		el:'#app',
 		data:{
 			message:'Hello Vue.js!',
+			newTodo:'',
 			todos:[
 				{text:'Learn JavaScript'},
 				{text:'Learn vue.js'},
@@ -30,6 +34,16 @@
 		methods:{
 			reverseMessage:function(){
 				this.message=this.message.split('').reverse().join('');
+			},
+			addTodo:function(){
+				var text=this.newTodo.trim();
+				if(text){
+					this.todos.push({text:text});
+					this.newTodo='';
+				}
+			},
+			removeTodo:function(index){
+				this.todos.splice(index,1);
 			}
 		}
 	});
