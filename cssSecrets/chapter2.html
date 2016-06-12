@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>背景和边框</title>
+	<style type="text/css">
+	.trans-border{
+		background: url('http://csssecrets.io/images/stone-art.jpg');
+		height:12em;
+	}
+	.trans-border div{
+		border: 10px solid hsla(360,50%,50%,.5);
+		background: white;
+		
+		/* styling */
+		max-width: 10em;
+		padding: 2em;
+		margin: 2em auto 0;
+		font: 100%/1.5 sans-serif;
+		float:left;
+	}
+	.trans-border div.white{
+		border: 10px solid hsla(0,0%,100%,.5);
+	}
+	.trans-border div.whitetrans{
+		border: 10px solid hsla(0,0%,100%,.5);
+		background-clip:padding-box;
+	}
+	.trans-border div.trans{
+		background-clip:padding-box;
+	}
+	</style>
+</head>
+<body>
+	<div class="trans-border">
+		<div class="white">这是一个白色半透明边框——默认</div>
+		<div class="whitetrans">这是一个白色半透明边框</div>
+		<div class="trans">这是一个红色半透明边框</div>
+		<div>这是一个红色半透明边框——默认</div>
+	</div>
+</body>
+</html>
