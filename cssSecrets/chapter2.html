@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>背景和边框</title>
 	<style type="text/css">
+    .clr{clear:both;}
 	.trans-border{
 		background: url('http://csssecrets.io/images/stone-art.jpg');
 		height:12em;
@@ -29,6 +30,42 @@
 	.trans-border div.trans{
 		background-clip:padding-box;
 	}
+    .box{
+        width: 100px;
+        height: 60px;
+        margin: 25px;
+        float:left;
+    }
+    .border-shadow{
+        background: yellowgreen;
+        box-shadow: 0 0 0 10px #655,
+            0 0 0 15px deeppink,
+            0 2px 5px 15px rgba(0,0,0,.6);
+    }
+    .outline1{
+        background:yellowgreen;
+        border:10px solid #655;
+        outline:5px solid deeppink;
+    }
+    .outline2{
+        background:#6B5956;
+        border:10px solid #6B5956;
+        border-radius:5px;
+        outline:2px dashed #ccc;
+        outline-offset:-10px;
+    }
+    .bg-position{
+        background: url(http://csssecrets.io/images/code-pirate.svg)
+                    no-repeat bottom right #58a;
+        background-position: right 20px bottom 10px;
+        
+        /* Styling */
+        max-width: 10em;
+        min-height: 5em;
+        padding: 10px;
+        color: white;
+        font: 100%/1 sans-serif;
+    }
 	</style>
 </head>
 <body>
@@ -38,5 +75,18 @@
 		<div class="trans">这是一个红色半透明边框</div>
 		<div>这是一个红色半透明边框——默认</div>
 	</div>
+    <div class="box border-shadow">
+        多重投影背景box-shadow
+    </div>
+    <div class="box outline1">
+        outline产生的效果
+    </div>
+    <div class="box outline2">
+        outline产生虚线内描边
+    </div>
+    <div class="clr"></div>
+    <div class="bg-position">
+        背景定位 background-position
+    </div>
 </body>
 </html>
