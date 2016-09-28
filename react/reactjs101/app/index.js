@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MyComponent from './index2';
 
 const App2 = ()=>(
     <div>Hello World2!</div>
 );
+
 class App extends React.Component {
     constructor(props){
         super(props);
@@ -15,6 +17,7 @@ class App extends React.Component {
             <div>
                 <h1>Hello,World!</h1>
                 <App2 />
+                <MyComponent />
             </div>
         );
     }
