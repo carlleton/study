@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class MyComponent extends React.Component{
+	constructor(props){
+		super(props);
+	}
     render(){
         return (
-            <div>MyComponent!</div>
+            <div>MyComponent!{this.props.name}</div>
         );
     }
 };
@@ -17,3 +20,4 @@ MyComponent.defaultProps={
     name:'',
 }
 module.exports = MyComponent;
+
