@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MyComponent from './index2';
 import MarkdownEditor from './MarkdownEditor';
+import UserGithub from './userGithub';
 
 const lists=['JavaScript','Java','Node','Python'];
 class HelloMessage extends React.Component {
@@ -60,6 +61,7 @@ class App extends React.Component {
                 <HelloMessage />
                 <Timer />
                 <MarkdownEditor />
+                <UserGithub source="https://api.github.com/users/torvalds" />
             </div>
         );
     }
